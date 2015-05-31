@@ -1,0 +1,44 @@
+<div class="page-header">
+    <h1 >Create New Project</h1>
+    <button  class="btn btn-primary" ><a class="noDecorate" href="#/login">Log In</a></button>
+
+</div>
+
+<!-- Note that novalidate is used to disable browser's native form validation. -->
+<div class="row">
+  <form novalidate name="contactForm" class="well form-container">
+      <label>Name</label>
+      <input ng-model="form.name" name="name" type="text" class="span6" placeholder="name" required />
+      <span ng-show="contactForm.name.$error.required" class="help-inline">Required</span>
+
+      <label>Start By</label>
+      <input ng-model="form.start" name="start" type="date" class="span6" placeholder="dd/mm/yyyy" required />
+      <span ng-show="contactForm.start.$error.required" class="help-inline">Required</span>
+      <span ng-show="contactForm.start.$error.email" class="help-inline">Error</span>
+
+      <label>Project Length</label>
+      <input ng-model="form.projLength" min="1" name="projLength" type="number" class="span6" placeholder="in Weeks" required />
+      <span ng-show="contactForm.projLength.$error.required" class="help-inline">Required</span>
+      <span ng-show="contactForm.projLength.$error.password" class="help-inline">Error</span>
+
+      <label>Notes</label>
+      <textarea rows="5" col="50" ng-model="form.notes" name="notes" type="text" class="span6" placeholder="Notes about your project"  />
+      </textarea>
+
+      <div class="form-actions">
+          <button ng-click="sendForm()" ng-disabled="contactForm.$invalid" class="btn btn-primary" >Send message &raquo;</button>
+          <button ng-click="resetForm()" class="btn">Reset</button>
+      </div>
+
+  </form>
+</div>
+
+<!-- Just for testing
+<h3>Debug output</h3>
+<pre>
+ sent form = {{lastForm | json}}
+ result = {{resultData | json}}
+
+
+</pre>
+-->

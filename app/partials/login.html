@@ -1,0 +1,37 @@
+<div class="page-header">
+    <h1>Login</h1>
+    <button class="btn btn-primary" ><a href="#/signup" class="noDecorate">Create Account</a></button>
+
+</div>
+
+<!-- Note that novalidate is used to disable browser's native form validation. -->
+<div class="row">
+  <form novalidate name="contactForm" class="well form-container">
+    
+      <label>Email address</label>
+      <input ng-model="form.email" name="email" type="email" class="span6" placeholder="email" required />
+      <span ng-show="contactForm.email.$error.required" class="help-inline">Required</span>
+      <span ng-show="contactForm.email.$error.email" class="help-inline">Error</span>
+
+      <label>Password</label>
+      <input ng-model="form.password" min="5" name="password" type="password" class="span6" placeholder="password" required />
+      <span ng-show="contactForm.password.$error.required" class="help-inline">Required</span>
+      <span ng-show="contactForm.password.$error.password" class="help-inline">Error</span>
+
+      <div class="form-actions">
+          <button ng-click="sendForm()" ng-disabled="contactForm.$invalid" class="btn btn-primary" >Send message &raquo;</button>
+          <button ng-click="resetForm()" class="btn">Reset</button>
+      </div>
+
+  </form>
+</div>
+
+<!-- Just for testing
+<h3>Debug output</h3>
+<pre>
+ sent form = {{lastForm | json}}
+ result = {{resultData | json}}
+
+
+</pre>
+-->
