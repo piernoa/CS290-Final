@@ -36,3 +36,10 @@
   text-decoration:none;
   color:inherit;
 }
+
+@media (min-width: 1200px)
+{
+  .row {
+    margin-left: 0px !important;
+  }
+}

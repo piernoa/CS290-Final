@@ -1,3 +1,21 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="#">Wishful Thinking</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li class="active"><a href="#/app/create">Add Project</a></li>
+                    <li><a href="#/app/list">My Projects</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+</div>
 <div class="page-header">
     <h1 >Create New Project</h1>
 </div>
@@ -24,10 +42,10 @@
       </textarea>
 
       <div class="form-actions">
-          <button ng-click="sendForm()" ng-disabled="contactForm.$invalid" class="btn btn-primary" >Send message &raquo;</button>
+          <button ng-click="sendForm()" ng-disabled="contactForm.$invalid" class="btn btn-primary" >Create Project &raquo;</button>
           <button ng-click="resetForm()" class="btn">Reset</button>
       </div>
-      
+
   </form>
 </div>
 
