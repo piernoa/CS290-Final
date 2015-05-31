@@ -1,6 +1,4 @@
 
-
-
 // Declare app level module which depends on filters, and services
 var app = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives']).
   config(['$routeProvider', function($routeProvider) {
@@ -16,4 +14,4 @@ var app = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.dir
 
     // default
     $routeProvider.otherwise({redirectTo: '/home'});
-  }])
+  }]);
