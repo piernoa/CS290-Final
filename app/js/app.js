@@ -11,4 +11,4 @@ angular.module('myApp', ['ngRoute', 'myApp.controllers']).
 
     // default
      $routeProvider.otherwise({redirectTo: '/home'});
-  }])
+  }]);
