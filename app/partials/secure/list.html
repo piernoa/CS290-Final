@@ -6,36 +6,43 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="#">Wishful Thinking</a>
+            <a class="brand" href="#/home">Wishful Thinking</a>
             <div class="nav-collapse collapse">
                 <ul class="nav">
-                    <li ><a href="#/app/create">Add Project</a></li>
-                    <li class="active"><a href="#/app/list">My Projects</a></li>
+                    <li ><a href="#/create">Add Project</a></li>
+                    <li class="active"><a href="#/list">My Projects</a></li>
+                    <li ng-click="Logout()"><a href="#/home">Logout</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
     </div>
 </div>
 <div class="page-header">
-    <h1>My Projects</h1>
+    <h1 ng-model="user">{{user.name}}'s Projects</h1>
 </div>
 <div class="row">
-  <table style="width:90%;padding:0px;">
+  <table style="width:100%;padding:0px;">
     <tr>
-      <td><strong>Name </strong></td>
-      <td><strong>Start Date</strong></td>
-      <td><strong>Project Length</strong></td>
-      <td><strong>Progress</strong></td>
-      <td><strong>Notes</strong></td>
+      <td class="center"><strong>Name </strong></td>
+      <td class="center"><strong>Start Date</strong></td>
+      <td class="center"><strong>Project Length</strong></td>
+      <td class="center"><strong>Progress</strong></td>
+      <td class="center"><strong>Notes</strong></td>
     </tr>
   <tr ng-model="data" ng-repeat="d in data">
-    <td>{{d.name}}</td>
-    <td>{{d.start | date: 'shortDate'}}</td>
-    <td>{{d.length}} Weeks</td>
-    <td>{{d.progress}}%</td>
-    <td>{{d.notes}}</td>
-    <td><button ng-click="setModalData(d)" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary" >Edit &raquo;</button></td>
-    <td><button ng-click="delete(d)" class="btn">Delete</button></td>
+    <td class="tName center">{{d.name}}</td>
+    <td class="tStart center">{{d.start | date: 'shortDate'}}</td>
+    <td class="tLength center">{{d.length}} Weeks</td>
+    <td class="tProgress">
+      <div class="progress">
+        <div class="bar bar-success" role="progressbar" aria-valuenow="{{d.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{d.progress}}%;">
+          {{d.progress}}%
+        </div>
+      </div>
+    </td>
+    <td class="tNotes pad15">{{d.notes}}</td>
+    <td class="tButton"><button ng-click="setModalData(d)" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary" >Edit &raquo;</button></td>
+    <td class="tButton"><button ng-click="delete(d)" class="btn">Delete</button></td>
 
     <div ng-model="modalData" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -57,11 +64,11 @@
               </div>
               <div class="form-group">
                 <label for="length" class="control-label" placeholder>Length:</label>
-                <input ng-model="modalData.length" type="number" min="1" class="form-control" id="length" placeholder="{{modalData.length}}">
+                <input ng-model="modalData.length" type="number" string-to-number min="1" class="form-control" id="length" placeholder="{{modalData.length}}">
               </div>
               <div class="form-group">
                 <label for="progress" class="control-label" placeholder>Progress:</label>
-                <input ng-model="modalData.progress" type="number" min="0" class="form-control" id="progress" placeholder="{{modalData.progress}}">
+                <input ng-model="modalData.progress" type="number" string-to-number min="0" class="form-control" id="progress" placeholder="{{modalData.progress}}">
               </div>
               <div class="form-group">
                 <label for="notes" class="control-label" placeholder>Notes:</label>

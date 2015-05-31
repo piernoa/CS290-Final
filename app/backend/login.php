@@ -9,7 +9,7 @@ $request = json_decode($postdata);
   $password= $request->password;
 
   // prepare statement
-  if (!($select = $mysqli->prepare("SELECT name, email, password FROM Users WHERE email = ?"))) {
+  if (!($select = $mysqli->prepare("SELECT name, email, password, id FROM Users WHERE email = ?"))) {
     echo "Uh oh. Prepare statement failed : (" . $insert->errno . ") " . $insert->error;
   }
   // bind
@@ -24,13 +24,14 @@ $request = json_decode($postdata);
   $dname = null;
   $demail = null;
   $dpassword = null;
+  $did = null;
 
-  if (!$select->bind_result($dname, $demail, $dpassword )) {
+  if (!$select->bind_result($dname, $demail, $dpassword, $did )) {
     echo "Binding output parameters failed: (" . $select->errno . ") " . $select->error;
   }
   while ($select->fetch()) {
     if ($dpassword == crypt($password, '$andrew')) {
-      echo json_encode("Password_Accepted");
+      echo "Password_Accepted\|$dname\|$demail\|$did\|";
     } else {
       echo json_encode("Fail");
     }

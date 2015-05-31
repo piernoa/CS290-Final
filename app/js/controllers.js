@@ -21,7 +21,7 @@ angular.module('myApp.controllers', ['ngRoute'])
 
   };
 })
-.controller("LoginCtrl", function LoginCtrl($scope, $http, $route) {
+.controller("LoginCtrl", function LoginCtrl($scope, $http, $location, localStorageService) {
 
   $scope.lastForm = {};
 
@@ -36,14 +36,30 @@ angular.module('myApp.controllers', ['ngRoute'])
           },
           headers: {'Content-Type': 'application/x-www-form-urlencoded'}
       }).success(function(data, status, headers, config) {
-              $scope.resultData = data;
+              // $scope.resultData = data;
+              // console.log(data);
+              // if (JSON.parse(data) == "Password_Accepted") {
+              //   console.log("U may enter");
+              //
+              // }
+              console.log("success data");
               console.log(data);
-              if (JSON.parse(data) == "Password_Accepted") {
+              var ndata = data.split("\\|");
+              console.log(ndata);
+              if(ndata[0] == "Password_Accepted") {
+                $scope.resultData = ndata;
                 console.log("U may enter");
 
-              }
+                localStorageService.set("name", ndata[1]);
+                localStorageService.set("email", ndata[2]);
+                localStorageService.set("id", ndata[3]);
 
+                // let them inside
+                $location.path('create');
+
+              }
           }).error(function(data, status, headers, config) {
+              console.log("err");
               $scope.resultData = data;
               console.log(data);
           });
@@ -73,6 +89,12 @@ angular.module('myApp.controllers', ['ngRoute'])
       }).success(function(data, status, headers, config) {
               $scope.resultData = data;
               console.log(data);
+              if (data == "dup") {
+                alert("uh oh, that email address is being used by another user. Try another one!");
+              }
+              if (data == "ok") {
+                $location.path('create');
+              }
               //alert("Message sent successfully. We'll get in touch with you soon.");
 
       }).error(function(data, status, headers, config) {
@@ -86,10 +108,19 @@ angular.module('myApp.controllers', ['ngRoute'])
   };
 })
 
-
 // /***************************************** App *********************************************** */
 /* /secure/create Controller */
-.controller("CreateCtrl", function CreateCtrl($scope, $http) {
+.controller("CreateCtrl", function CreateCtrl($scope, $http,$location, localStorageService) {
+  $scope.Logout = function() {
+    localStorageService.remove("name");
+    localStorageService.remove("id");
+    localStorageService.remove("email");
+  }
+
+  if (localStorageService.get("name") === null || localStorageService.get("id") === null) {
+    console.log("No Authorization");
+    $location.path('/login');
+  }
 
   $scope.lastForm = {};
 
@@ -133,25 +164,24 @@ angular.module('myApp.controllers', ['ngRoute'])
   };
 })
 // /* /secure/list Controller */
-.controller("ListCtrl",function ListCtrl($scope, $http) {
+.controller("ListCtrl",function ListCtrl($scope, $http,$location, localStorageService) {
 
+  if (localStorageService.get("name") === null || localStorageService.get("id") === null) {
+    console.log("No Authorization");
+    $location.path('/login');
+  }
   $scope.data = {};
   $scope.modalData = {};
-
-
+  $scope.user = {};
 
   $scope.getData = function() {
-    // console.log($scope.form.name);
-    //   console.log($scope.form.start);
-    //     console.log($scope.form.projLength);
-    //       console.log($scope.form.notes);
     var urlString = window.location.origin + window.location.pathname + "backend/allProjects.php";
     console.log(urlString);
       $http({
           method: 'POST',
           url: urlString,
           data: {
-              'owner': 1
+              'owner': localStorageService.get("id")
           },
           headers: {'Content-Type': 'application/x-www-form-urlencoded'}
       }).success(function(data, status, headers, config) {
@@ -205,7 +235,7 @@ angular.module('myApp.controllers', ['ngRoute'])
   $scope.getData();
   $scope.setModalData = function(d) {
       $scope.modalData.name = d.name;
-      $scope.modalData.start = d.start;
+      $scope.modalData.start = new Date(d.start);
       $scope.modalData.length = d.length;
       $scope.modalData.notes = d.notes;
       $scope.modalData.progress = d.progress;
@@ -236,4 +266,10 @@ angular.module('myApp.controllers', ['ngRoute'])
           //$scope.getData();
       });
   };
+  $scope.Logout = function() {
+    localStorageService.remove("name");
+    localStorageService.remove("id");
+    localStorageService.remove("email");
+  }
+  $scope.user.name = localStorageService.get("name");
 });

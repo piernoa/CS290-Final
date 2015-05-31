@@ -37,6 +37,36 @@
   color:inherit;
 }
 
+.tName {
+  width:5%;
+}
+.tStart {
+  width:5%;
+}
+.tLength {
+  width:5%;
+}
+.tProgress {
+  width:15%;
+}
+
+.tNotes {
+  width:45%;
+}
+
+.tButton {
+  width:5%;
+}
+
+.center {
+  text-align: center;
+}
+
+.pad15 {
+  padding-left:15px;
+  padding-right:15px;
+}
+
 @media (min-width: 1200px)
 {
   .row {
