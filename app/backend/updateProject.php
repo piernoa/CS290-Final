@@ -22,7 +22,10 @@ if (!$select->bind_param("ssiisi", $name, $start, $length, $progress, $notes, $i
 }
 // execute
 if (!$select->execute()) {
-  echo json_encode("Insertion failed");
+  if ($select->errno == "1062") {
+    echo "dup";
+  }
+  //echo json_encode("Insertion failed failed : (" . $select->errno . ") " . $select->error . ")");
 } else {
   echo json_encode("insert_success");
 }

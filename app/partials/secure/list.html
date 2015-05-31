@@ -9,16 +9,16 @@
             <a class="brand" href="#/home">Wishful Thinking</a>
             <div class="nav-collapse collapse">
                 <ul class="nav">
-                    <li ><a href="#/create">Add Project</a></li>
+                    <li><a href="#/create">Add Project</a></li>
                     <li class="active"><a href="#/list">My Projects</a></li>
-                    <li ng-click="Logout()"><a href="#/home">Logout</a></li>
+                    <li><a href="#/home">Logout</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
     </div>
 </div>
 <div class="page-header">
-    <h1 ng-model="user">{{user.name}}'s Projects</h1>
+    <h1 class="pad15"  ng-model="user">{{user.name}}'s Projects</h1>
 </div>
 <div class="row">
   <table style="width:100%;padding:0px;">
@@ -63,11 +63,11 @@
                 <input ng-model="modalData.start" type="date" class="form-control" id="date" value="{{modalData.start}}">
               </div>
               <div class="form-group">
-                <label for="length" class="control-label" placeholder>Length:</label>
+                <label for="length" class="control-label" placeholder>Length(in Weeks):</label>
                 <input ng-model="modalData.length" type="number" string-to-number min="1" class="form-control" id="length" placeholder="{{modalData.length}}">
               </div>
               <div class="form-group">
-                <label for="progress" class="control-label" placeholder>Progress:</label>
+                <label for="progress" class="control-label" placeholder>Progress (%):</label>
                 <input ng-model="modalData.progress" type="number" string-to-number min="0" class="form-control" id="progress" placeholder="{{modalData.progress}}">
               </div>
               <div class="form-group">

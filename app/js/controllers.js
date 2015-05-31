@@ -57,6 +57,8 @@ angular.module('myApp.controllers', ['ngRoute'])
                 // let them inside
                 $location.path('create');
 
+              } else {
+                sweetAlert("Uh Oh.", "Your email or password didn't work. Are you sure you've created an account?", "error");
               }
           }).error(function(data, status, headers, config) {
               console.log("err");
@@ -69,7 +71,7 @@ angular.module('myApp.controllers', ['ngRoute'])
       $scope.form = angular.copy($scope.lastForm);
   };
 })
-.controller("SignupCtrl", function ($scope, $http, $route) {
+.controller("SignupCtrl", function ($scope, $http,$location, $route) {
 
   $scope.lastForm = {};
   var urlString = window.location.origin + window.location.pathname + "backend/newUser.php";
@@ -90,10 +92,11 @@ angular.module('myApp.controllers', ['ngRoute'])
               $scope.resultData = data;
               console.log(data);
               if (data == "dup") {
-                alert("uh oh, that email address is being used by another user. Try another one!");
+                sweetAlert("Uh Oh.", $scope.form.email + " is being used by another user. Try another email address!", "error");
               }
               if (data == "ok") {
-                $location.path('create');
+                sweetAlert("Awesome!", "Account Created! Please login.", "success");
+                $location.path('login');
               }
               //alert("Message sent successfully. We'll get in touch with you soon.");
 
@@ -110,7 +113,7 @@ angular.module('myApp.controllers', ['ngRoute'])
 
 // /***************************************** App *********************************************** */
 /* /secure/create Controller */
-.controller("CreateCtrl", function CreateCtrl($scope, $http,$location, localStorageService) {
+ .controller("CreateCtrl", function CreateCtrl($scope, $http, $location, localStorageService) {
   $scope.Logout = function() {
     localStorageService.remove("name");
     localStorageService.remove("id");
@@ -142,8 +145,7 @@ angular.module('myApp.controllers', ['ngRoute'])
               'length':$scope.form.projLength,
               'notes': $scope.form.notes,
               'progress': 0,
-              'owner': 1
-
+              'owner': localStorageService.get('id')
           },
           headers: {'Content-Type': 'application/x-www-form-urlencoded'}
       }).success(function(data, status, headers, config) {
@@ -151,6 +153,8 @@ angular.module('myApp.controllers', ['ngRoute'])
           $scope.resultData = data;
           console.log(data);
           $scope.resetForm();
+          sweetAlert("Awesome!", "Project Created Successfully", "success");
+          $location.path('list');
           //alert("Message sent successfully. We'll get in touch with you soon.");
 
       }).error(function(data, status, headers, config) {
@@ -163,8 +167,8 @@ angular.module('myApp.controllers', ['ngRoute'])
       $scope.form = angular.copy($scope.lastForm);
   };
 })
-// /* /secure/list Controller */
-.controller("ListCtrl",function ListCtrl($scope, $http,$location, localStorageService) {
+/* /secure/list Controller */
+ .controller("ListCtrl",function ListCtrl($scope, $http, $location, localStorageService) {
 
   if (localStorageService.get("name") === null || localStorageService.get("id") === null) {
     console.log("No Authorization");
@@ -242,9 +246,14 @@ angular.module('myApp.controllers', ['ngRoute'])
       $scope.modalData.id  = d.id;
   };
   $scope.updateProject = function(modalData) {
-    console.log($scope.modalData)
+    console.log($scope.modalData);
+    if (Number(modalData.length) < 1) {
+      sweetAlert("Uh Oh.", "Project names have to be unique!", "error");
+      return 0;
+    }
     var urlString = window.location.origin + window.location.pathname + "backend/updateProject.php";
-      $http({
+
+    $http({
           method: 'POST',
           url: urlString,
           data: {
@@ -254,12 +263,16 @@ angular.module('myApp.controllers', ['ngRoute'])
               'progress': modalData.progress,
               'length': modalData.length,
               'id': modalData.id,
-              'owner': 1
+              'owner': localStorageService.get("id")
           },
           headers: {'Content-Type': 'application/x-www-form-urlencoded'}
       }).success(function(data, status, headers, config) {
           console.log("success");
           console.log(data);
+          if (data === "dup") {
+            sweetAlert("Uh Oh.", "Project names have to be unique!", "error");
+
+          }
           $scope.getData();
 
       }).error(function(data, status, headers, config) {
