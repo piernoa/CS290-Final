@@ -2,7 +2,7 @@
 
 
 // Declare app level module which depends on filters, and services
-var app = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives']).
+angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives']).
   config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/home', {templateUrl: 'partials/home.html', controller: GenericViewCtrl});
     $routeProvider.when('/project_a', {templateUrl: 'partials/project_a.html', controller: GenericViewCtrl});
@@ -16,4 +16,4 @@ var app = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.dir
 
     // default
     $routeProvider.otherwise({redirectTo: '/home'});
-  }])
+  }]);
