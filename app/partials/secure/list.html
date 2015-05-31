@@ -1,0 +1,64 @@
+<div class="page-header">
+    <h1>My Projects</h1>
+</div>
+<div class="row">
+  <table style="width:100%">
+    <tr>
+      <td><strong>Name </strong></td>
+      <td><strong>Start Date</strong></td>
+      <td><strong>Project Length</strong></td>
+      <td><strong>Progress</strong></td>
+      <td><strong>Notes</strong></td>
+    </tr>
+  <tr ng-model="data" ng-repeat="d in data">
+    <td>{{d.name}}</td>
+    <td>{{d.start | date: 'shortDate'}}</td>
+    <td>{{d.length}} Weeks</td>
+    <td>{{d.progress}}%</td>
+    <td>{{d.notes}}</td>
+    <td><button ng-click="setModalData(d)" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary" >Edit &raquo;</button></td>
+    <td><button ng-click="delete(d)" class="btn">Delete</button></td>
+
+    <div ng-model="modalData" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="exampleModalLabel"> Edit {{modalData.name}}</h4>
+          </div>
+          <div class="modal-body">
+            <form >
+              <div class="form-group">
+                <label for="name" class="control-label" placeholder>Name:</label>
+                <input ng-model="modalData.name" type="text" class="form-control" id="name" value="{{modalData.name}}">
+              </div>
+              <div class="form-group">
+                <label for="date" class="control-label" placeholder>Start Date:</label>
+                <input ng-model="modalData.start" type="date" class="form-control" id="date" value="{{modalData.start}}">
+              </div>
+              <div class="form-group">
+                <label for="length" class="control-label" placeholder>Length:</label>
+                <input ng-model="modalData.length" type="number" min="1" class="form-control" id="length" placeholder="{{modalData.length}}">
+              </div>
+              <div class="form-group">
+                <label for="progress" class="control-label" placeholder>Progress:</label>
+                <input ng-model="modalData.progress" type="number" min="0" class="form-control" id="progress" placeholder="{{modalData.progress}}">
+              </div>
+              <div class="form-group">
+                <label for="notes" class="control-label" placeholder>Notes:</label>
+                <input ng-model="modalData.notes" type="text" class="form-control" id="notes" value="{{modalData.notes}}">
+              </div>
+
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" ng-click="updateProject(modalData)" data-dismiss="modal">Update</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </tr>
+</table>
+</div>

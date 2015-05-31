@@ -1,12 +1,14 @@
 <?php
 include "connection.php";
 
-if ($mysqli->query("CREATE TABLE Videos(
+if ($mysqli->query("CREATE TABLE Projects(
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(255) NOT NULL UNIQUE,
-  category VARCHAR(255),
+  start VARCHAR(255),
   length INT,
-  rented BIT NOT NULL
+  progress INT,
+  notes VARCHAR(255),
+  owner INT UNSIGNED NOT NULL REFERENCES Users(id)
 )")) {
   echo "Table created successfully";
 } else {
