@@ -4,27 +4,24 @@ $postdata = file_get_contents("php://input");
 $request = json_decode($postdata);
 
 // Variables
-$name=$request->name;
-$start= $request->start;
-$length = (int)$request->length;
-$notes = $request->notes;
-$progress = (int)$request->progress;
-$owner = (int)$request->owner;
-$public = (int)$request->public;
+$id = (int)$request->id;
+$votes = (int)$request->votes;
 
-$votes = 0;
 //echo "name: $name, start: $start, length: $length, notes: $notes, progress: $progress, owner: $owner";
 // prepare statement
-if (!($select = $mysqli->prepare("INSERT INTO Projects(name, start, length, progress, notes, owner, public, votes) VALUES(?, ?, ?, ?, ?, ?,?, ?)"))) {
+if (!($select = $mysqli->prepare("UPDATE Projects SET votes=? WHERE id=?"))) {
   echo "Uh oh. Prepare statement failed : (" . $select->errno . ") " . $select->error;
 }
 // bind
-if (!$select->bind_param("ssiisiii", $name, $start, $length, $progress, $notes, $owner, $public, $votes)) {
+if (!$select->bind_param("ii", $votes, $id)) {
   echo "Uh oh. Bind statement failed : (" . $select->errno . ") " . $select->error;
 }
 // execute
 if (!$select->execute()) {
-  echo json_encode("Insertion failed");
+  if ($select->errno == "1062") {
+    echo "dup";
+  }
+  //echo json_encode("Insertion failed failed : (" . $select->errno . ") " . $select->error . ")");
 } else {
   echo json_encode("insert_success");
 }

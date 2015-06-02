@@ -36,7 +36,10 @@
     <tr>
       <td class="center"><strong>Project Name</strong></td>
       <td class="center"><strong>Progress</strong></td>
-      <td class="center"><strong>Notes</strong></td>
+      <td class="center"><strong>About</strong></td>
+      <td class="center"><strong>Score</strong></td>
+      <td class="center"><strong>Upvote</strong></td>
+      <td class="center"><strong>Downvote</strong></td>
     </tr>
   <tr ng-model="data" ng-repeat="d in data">
     <td class="tProgress center">{{d.name}}</td>
@@ -48,6 +51,9 @@
       </div>
     </td>
     <td class="tNotes pad15">{{d.notes}}</td>
+    <td class="tNotes pad15 center">{{d.votes}}</td>
+    <td class="tNotes pad15"><button ng-click="upvote(d, $index)" class="btn btn-primary">Upvote</button></td>
+    <td class="tNotes pad15"><button ng-click="downvote(d, $index)" class="btn">Downvote</button></td>
   </tr>
 </table>
 </div>

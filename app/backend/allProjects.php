@@ -8,7 +8,7 @@ $request = json_decode($postdata);
   $id=(int)$request->owner;
 
   // prepare statement
-  if (!($select = $mysqli->prepare("SELECT id, name, start,length,progress,notes,public FROM Projects WHERE owner = ?"))) {
+  if (!($select = $mysqli->prepare("SELECT id, name, start,length,progress,notes,public,votes FROM Projects WHERE owner = ?"))) {
     echo "Uh oh. Prepare statement failed : (" . $insert->errno . ") " . $insert->error;
   }
   // bind
@@ -27,14 +27,15 @@ $request = json_decode($postdata);
   $dprogress = null;
   $dnotes = null;
   $dpublic = null;
+  $dvotes = null;
 
-  if (!$select->bind_result($did,$dname, $dstart, $dlength, $dprogress, $dnotes, $dpublic )) {
+  if (!$select->bind_result($did,$dname, $dstart, $dlength, $dprogress, $dnotes, $dpublic, $dvotes )) {
     echo "Binding output parameters failed: (" . $select->errno . ") " . $select->error;
   }
   $resultArr = array();
 
   while ($select->fetch()) {
-    $resultArr[] = $dname . "/|" . $dstart ."/|" . $dlength . "/|" . $dprogress . "/|" . $dnotes. "/|" . $did ."/|" . $dpublic;
+    $resultArr[] = $dname . "/|" . $dstart ."/|" . $dlength . "/|" . $dprogress . "/|" . $dnotes. "/|" . $did ."/|" . $dpublic ."/|" . $dvotes;
   }
   echo json_encode($resultArr);
 

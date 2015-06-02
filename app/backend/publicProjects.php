@@ -5,7 +5,7 @@ $request = json_decode($postdata);
 //echo $request->name;
   $public = 1;
   // prepare statement
-  if (!($select = $mysqli->prepare("SELECT name, notes, progress FROM Projects WHERE public = ?"))) {
+  if (!($select = $mysqli->prepare("SELECT name, notes, progress, votes, id FROM Projects WHERE public = ?"))) {
     echo "Uh oh. Prepare statement failed : (" . $insert->errno . ") " . $insert->error;
   }
   // bind
@@ -20,14 +20,16 @@ $request = json_decode($postdata);
   $dname = null;
   $dnotes = null;
   $dprogress = null;
+  $dvotes = null;
+  $did = null;
 
-  if (!$select->bind_result($dname, $dnotes, $dprogress )) {
+  if (!$select->bind_result($dname, $dnotes, $dprogress, $dvotes, $did )) {
     echo "Binding output parameters failed: (" . $select->errno . ") " . $select->error;
   }
   $resultArr = array();
 
   while ($select->fetch()) {
-    $resultArr[] = $dname . "/|" . $dnotes. "/|" . $dprogress;
+    $resultArr[] = $dname . "/|" . $dnotes . "/|" . $dprogress . "/|" . $dvotes . "/|" . $did;
   }
   echo json_encode($resultArr);
 

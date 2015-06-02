@@ -6,7 +6,7 @@ angular.module('myApp.controllers', ['ngRoute'])
   $scope.data = {};
   $scope.getData = function() {
     var urlString = window.location.origin + window.location.pathname + "backend/publicProjects.php";
-    console.log(urlString);
+    //console.log(urlString);
       $http({
           method: 'POST',
           url: urlString,
@@ -16,6 +16,7 @@ angular.module('myApp.controllers', ['ngRoute'])
           headers: {'Content-Type': 'application/x-www-form-urlencoded'}
       }).success(function(data, status, headers, config) {
           console.log("success");
+          //console.log(data);
           var dataObj = [];
           //console.log(data);
           // php didnt want to give proper json back
@@ -26,7 +27,10 @@ angular.module('myApp.controllers', ['ngRoute'])
               obj.name = cur[0];
               obj.notes = cur[1];
               obj.progress = cur[2];
+              obj.votes = cur[3];
+              obj.id = cur[4];
               obj.idx = i;
+              obj.hasVoted = false;
               data[i] = obj;
           }
 
@@ -40,6 +44,48 @@ angular.module('myApp.controllers', ['ngRoute'])
       });
   };
   $scope.getData();
+  $scope.upvote  = function(d, idx) {
+    console.log($scope.data[idx].hasVoted)
+    if ($scope.data[idx].hasVoted == true) {
+      return sweetAlert("Nice Try!", "You've already voted on this project.", "error");
+    }
+    d.votes++;
+    var urlString = window.location.origin + window.location.pathname + "backend/voteProject.php";
+      $http({
+          method: 'POST',
+          url: urlString,
+          data: {
+            "id": d.id,
+            "votes": d.votes
+          },
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+      }).success(function(data, status, headers, config) {
+          $scope.data[idx].hasVoted = true;
+      }).error(function(data, status, headers, config) {
+          $scope.getData();
+      });
+  }
+  $scope.downvote = function(d, idx) {
+    console.log($scope.data[idx].hasVoted)
+    if ($scope.data[idx].hasVoted == true) {
+      return sweetAlert("Nice Try!", "You've already voted on this project.", "error");
+    }
+    d.votes--;
+    var urlString = window.location.origin + window.location.pathname + "backend/voteProject.php";
+      $http({
+          method: 'POST',
+          url: urlString,
+          data: {
+            "id": d.id,
+            "votes": d.votes
+          },
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+      }).success(function(data, status, headers, config) {
+          $scope.data[idx].hasVoted = true;
+      }).error(function(data, status, headers, config) {
+          $scope.getData();
+      });
+  }
 })
 .controller("LoginCtrl", function LoginCtrl($scope, $http, $location, localStorageService) {
 
@@ -234,12 +280,13 @@ angular.module('myApp.controllers', ['ngRoute'])
               obj.notes = cur[4];
               obj.id = cur[5];
               obj.public = Number(cur[6]);
+              obj.votes = Number(cur[7]);
               obj.idx = i;
               data[i] = obj;
           }
 
           $scope.data = data;
-          //console.log(data);
+          console.log(data);
 
       }).error(function(data, status, headers, config) {
           $scope.resultData = data;

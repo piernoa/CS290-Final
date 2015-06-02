@@ -44,7 +44,7 @@
       </div>
     </td>
     <td class="tNotes pad15">{{d.notes}}</td>
-    <td class="tNotes pad15">{{d.notes}}</td>
+    <td class="tName pad15 center">{{d.votes}}</td>
     <td ng-show="{{d.public}}" ng-hide="!{{d.public}}" class="tLength pad15">True</td>
     <td ng-hide="{{d.public}}" ng-show="!{{d.public}}" class="tLength pad15">False</td>
     <td class="tButton"><button ng-click="setModalData(d, $index)" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary" >Edit</button></td>
@@ -83,7 +83,7 @@
                 </label>
               </div>
               <div class="form-group">
-                <label for="notes" class="control-label" placeholder>Notes:</label>
+                <label for="notes" class="control-label" placeholder>About:</label>
                 <input ng-model="modalData.notes" type="text" class="form-control" id="notes" value="{{modalData.notes}}">
               </div>
 
