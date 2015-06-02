@@ -21,13 +21,9 @@ if (!$select->execute()) {
   if ($select->errno == "1062") {
     echo "dup";
   }
-  //echo json_encode("Insertion failed failed : (" . $select->errno . ") " . $select->error . ")");
 } else {
   echo json_encode("insert_success");
 }
-
-//header('Content-Type: application/json');
-//echo json_encode($data);
 
 $select->close();
 ?>
