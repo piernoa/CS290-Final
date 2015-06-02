@@ -6,7 +6,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="#/home">Wishful Thinking</a>
+            <a class="brand" href="#/home">Road Map</a>
             <div class="nav-collapse collapse">
                 <ul class="nav">
                     <li class="active"><a href="#/home">Home</a></li>
@@ -18,29 +18,28 @@
 </div>
 <!-- Main hero unit for a primary marketing message or call to action -->
 <div class="hero-unit">
-    <h1>Wishful Thinking</h1>
-    <h2>A simple reminder of your hopes and dreams</h2>
-    <p> Setting goals is cool. You know what's also cool? Tools that help you get there.
-    This simple program will keep track of your hopes and dreams, the timeline in which you
-    hope to accomplish it, and send you reminders in intervals until you achieve it.</p>
-    <p>
-      You can also view a chart of other people's hopes and dreams.
-      like financial, relationship, career, luxury goods.
+    <h1 class="center"> Road Map </h1>
+    <h2 class="center">A simple way to track your programming projects.</h2>
+    <p class="center">
+      Use Road Map to keep track of all the projects you want to start and when you want to start them by.
+    </p>
+    <p class="center">
+      Make your project public and have people upvote or downvote the idea.
     </p>
 
-    <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+    <p class="center"><a href="#/signup" class="btn btn-primary btn-large">Sign Up</a></p>
 </div>
 <!-- Public Projects -->
 <div class="row">
-  <h1> Check out some project ideas! </h1> <br>
-  <table style="width:100%;padding:0px;">
+  <h1 class="center"> Check out some project ideas! </h1> <br>
+  <table class="home-table">
     <tr>
       <td class="center"><strong>Project Name</strong></td>
       <td class="center"><strong>Progress</strong></td>
       <td class="center"><strong>Notes</strong></td>
     </tr>
   <tr ng-model="data" ng-repeat="d in data">
-    <td class="tName center">{{d.name}}</td>
+    <td class="tProgress center">{{d.name}}</td>
     <td class="tProgress">
       <div class="progress">
         <div class="bar bar-success" role="progressbar" aria-valuenow="{{d.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{d.progress}}%;">
@@ -53,24 +52,4 @@
 </table>
 </div>
 
-<!-- Example row of columns -->
-<div class="row">
-    <div class="span4">
-        <a href="#" class="thumbnail"><img src="img/screen1.jpg"  alt="screen1"></a>
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn" href="#/project_a">View details &raquo;</a></p>
-    </div>
-    <div class="span4">
-        <a href="#" class="thumbnail"><img src="img/screen2.jpg"  alt="screen2"></a>
-        <h2>Heading</h2>
-        <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-        <p><a class="btn" href="#/project_a">View details &raquo;</a></p>
-    </div>
-    <div class="span4">
-        <a href="#" class="thumbnail"><img src="img/screen3.jpg"  alt="screen3"></a>
-        <h2>Heading</h2>
-        <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p><a class="btn" href="#/contact">View details &raquo;</a></p>
-    </div>
 </div>

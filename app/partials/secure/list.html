@@ -6,7 +6,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="#/home">Wishful Thinking</a>
+            <a class="brand" href="#/home">Road Map</a>
             <div class="nav-collapse collapse">
                 <ul class="nav">
                     <li><a href="#/create">Add Project</a></li>
@@ -21,14 +21,16 @@
     <h1 class="pad15"  ng-model="user">{{user.name}}'s Projects</h1>
 </div>
 <div class="row">
-  <table style="width:100%;padding:0px;">
+  <table style="width:95%;padding:0px;margin-left:25px">
     <tr>
       <td class="center"><strong>Name </strong></td>
       <td class="center"><strong>Start Date</strong></td>
       <td class="center"><strong>Project Length</strong></td>
       <td class="center"><strong>Progress</strong></td>
-      <td class="center"><strong>Notes</strong></td>
+      <td class="center"><strong>About</strong></td>
+      <td class="center"><strong>Votes</strong></td>
       <td class="center"><strong>Public</strong></td>
+
     </tr>
   <tr ng-model="data" ng-repeat="d in data">
     <td class="tName center">{{d.name}}</td>
@@ -42,9 +44,10 @@
       </div>
     </td>
     <td class="tNotes pad15">{{d.notes}}</td>
+    <td class="tNotes pad15">{{d.notes}}</td>
     <td ng-show="{{d.public}}" ng-hide="!{{d.public}}" class="tLength pad15">True</td>
     <td ng-hide="{{d.public}}" ng-show="!{{d.public}}" class="tLength pad15">False</td>
-    <td class="tButton"><button ng-click="setModalData(d, $index)" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary" >Edit &raquo;</button></td>
+    <td class="tButton"><button ng-click="setModalData(d, $index)" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary" >Edit</button></td>
     <td class="tButton"><button ng-click="delete(d)" class="btn">Delete</button></td>
 
     <div ng-model="modalData" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

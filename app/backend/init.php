@@ -9,6 +9,7 @@ if ($mysqli->query("CREATE TABLE Projects(
   progress INT,
   notes VARCHAR(255),
   public BIT NOT NULL,
+  votes   INT,
   owner INT UNSIGNED NOT NULL REFERENCES Users(id)
 )")) {
   echo "Table created successfully";
