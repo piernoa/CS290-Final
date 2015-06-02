@@ -37,6 +37,12 @@
       <input ng-model="form.projLength" min="1" name="projLength" type="number" class="span6" placeholder="in Weeks" required />
       <span ng-show="contactForm.projLength.$error.required" class="help-inline">Required</span>
       <span ng-show="contactForm.projLength.$error.password" class="help-inline">Error</span>
+      <p>This makes your project title and notes public so people can vote on your idea!</p>
+      <div class="checkbox">
+        <label>
+          <input ng-model="form.public" type="checkbox"> Make Public
+        </label>
+      </div>
 
       <label>Notes</label>
       <textarea rows="5" col="50" ng-model="form.notes" name="notes" type="text" class="span6" placeholder="Notes about your project"  />

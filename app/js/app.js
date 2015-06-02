@@ -1,7 +1,7 @@
 // Declare app level module which depends on filters, and services
 angular.module('myApp', ['ngRoute', 'myApp.controllers', 'LocalStorageModule'])
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/home', {templateUrl: 'partials/home.html' , controller: "GenericViewCtrl"});
+  $routeProvider.when('/home', {templateUrl: 'partials/home.html' , controller: "HomeCtrl"});
   $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: "LoginCtrl"});
   $routeProvider.when('/signup', {templateUrl: 'partials/signup.html', controller: "SignupCtrl"});
 

@@ -28,7 +28,29 @@
       like financial, relationship, career, luxury goods.
     </p>
 
-    <p><a ng-click="testPut()" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+    <p><a class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+</div>
+<!-- Public Projects -->
+<div class="row">
+  <h1> Check out some project ideas! </h1> <br>
+  <table style="width:100%;padding:0px;">
+    <tr>
+      <td class="center"><strong>Project Name</strong></td>
+      <td class="center"><strong>Progress</strong></td>
+      <td class="center"><strong>Notes</strong></td>
+    </tr>
+  <tr ng-model="data" ng-repeat="d in data">
+    <td class="tName center">{{d.name}}</td>
+    <td class="tProgress">
+      <div class="progress">
+        <div class="bar bar-success" role="progressbar" aria-valuenow="{{d.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{d.progress}}%;">
+          {{d.progress}}%
+        </div>
+      </div>
+    </td>
+    <td class="tNotes pad15">{{d.notes}}</td>
+  </tr>
+</table>
 </div>
 
 <!-- Example row of columns -->
