@@ -101,5 +101,16 @@ body {
   padding-top: 25px;
 }
 
+.hero-unit {
+  border-radius: 6px;
+  color: white !important;
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url("https://download.unsplash.com/photo-1428677361686-f9d23be145c9");
+  background-size: cover;
+  background-repeat: no-repeat;
+  text-align: center;
+  background-position-y: 100%;
+  margin-top: -19px;
+}
+
 
 /* http://codepen.io/cheeriottis/pen/inluv button*/
