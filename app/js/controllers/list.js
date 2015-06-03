@@ -10,7 +10,7 @@ angular.module('myApp.list', ['ngRoute'])
 .controller("ListCtrl",['$scope', '$http','$location', 'localStorageService', function($scope, $http, $location, localStorageService) {
 
   if (localStorageService.get("name") === null || localStorageService.get("id") === null) {
-    console.log("No Authorization");
+    //console.log("No Authorization");
     $location.path('/login');
   }
   $scope.data = {};
@@ -19,7 +19,7 @@ angular.module('myApp.list', ['ngRoute'])
 
   $scope.getData = function() {
     var urlString = window.location.origin + window.location.pathname + "backend/allProjects.php";
-    console.log(urlString);
+    //console.log(urlString);
     $http({
       method: 'POST',
       url: urlString,
@@ -28,7 +28,7 @@ angular.module('myApp.list', ['ngRoute'])
       },
       headers: {'Content-Type': 'application/x-www-form-urlencoded'}
     }).success(function(data, status, headers, config) {
-      console.log("success");
+      //console.log("success");
       var dataObj = [];
       //console.log(data);
       // php didnt want to give proper json back
@@ -49,12 +49,12 @@ angular.module('myApp.list', ['ngRoute'])
       }
 
       $scope.data = data;
-      console.log(data);
+      //console.log(data);
 
     }).error(function(data, status, headers, config) {
       $scope.resultData = data;
-      console.log("err");
-      console.log(data, status, headers);
+      //console.log("err");
+      //console.log(data, status, headers);
     });
   };
   $scope.delete = function(proj) {
@@ -72,7 +72,7 @@ angular.module('myApp.list', ['ngRoute'])
       },
       headers: {'Content-Type': 'application/x-www-form-urlencoded'}
     }).success(function(data, status, headers, config) {
-      console.log("success");
+      //console.log("success");
       $scope.getData();
 
     }).error(function(data, status, headers, config) {
@@ -81,15 +81,15 @@ angular.module('myApp.list', ['ngRoute'])
   };
   $scope.getData();
   $scope.setModalData = function(d, idx) {
-    console.log(d);
+    //console.log(d);
     $scope.modalData.name = d.name;
     $scope.modalData.start = new Date(d.start);
     $scope.modalData.dateCheck = d.start;
-    $scope.modalData.length = d.length;
-    $scope.modalData.notes = d.notes;
-    $scope.modalData.progress = d.progress;
+    $scope.modalData.length = Number(d.length);
+    $scope.modalData.notes =d.notes;
+    $scope.modalData.progress = Number(d.progress);
     $scope.modalData.id  = d.id;
-    console.log(d.public);
+    //console.log(d.public);
     if (d.public) {
       $scope.modalData.public = true;
     } else {
@@ -97,25 +97,17 @@ angular.module('myApp.list', ['ngRoute'])
     }
 
     $scope.modalData.idx = idx;
-    console.log($scope.modalData);
+    //console.log($scope.modalData);
 
   };
   $scope.updateProject = function(modalData) {
-    console.log("from updateProject: " + modalData.public);
+  //  console.log("from updateProject: " + modalData.public);
     if ($scope.modalData.public) {
       $scope.modalData.public = 1;
     } else {
       $scope.modalData.public = 0;
     }
 
-    if (modalData.name == $scope.data[modalData.idx].name &&
-      modalData.dateCheck == $scope.data[modalData.idx].start &&
-      modalData.notes == $scope.data[modalData.idx].notes &&
-      modalData.progress == $scope.data[modalData.idx].progress &&
-      modalData.notes == $scope.data[modalData.idx].notes &&
-      modalData.public == $scope.data[modalData.idx].public) {
-        return sweetAlert("Success", "Nothing changed.", "success");
-      }
 
       if (Number(modalData.length) < 1) {
         return sweetAlert("Uh Oh.", "Project lengths must be greater than 1!", "error");
@@ -138,13 +130,11 @@ angular.module('myApp.list', ['ngRoute'])
         },
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
       }).success(function(data, status, headers, config) {
-        console.log("success");
+        //console.log("success");
         //  console.log(data);
-        if (data === "dup") {
-          sweetAlert("Uh Oh.", "Project names have to be unique!", "error");
-        }
-        $scope.getData();
 
+        $scope.getData();
+        sweetAlert("Success", "Project Updated.", "success");
       }).error(function(data, status, headers, config) {
         $scope.getData();
       });

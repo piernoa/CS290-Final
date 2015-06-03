@@ -6,6 +6,7 @@ angular.module('myApp', ['ngAnimate',
   'myApp.signup',
   'myApp.create',
   'myApp.list',
+  'myApp.directives',
   'LocalStorageModule',
 ])
 .config(['$routeProvider', function($routeProvider) {
@@ -13,6 +14,5 @@ angular.module('myApp', ['ngAnimate',
   $routeProvider.otherwise({redirectTo: '/home'});
 }])
 .config(['localStorageServiceProvider', function (localStorageServiceProvider) {
-  localStorageServiceProvider
-    .setPrefix('AP');
+  localStorageServiceProvider.setPrefix('AP');
 }]);
