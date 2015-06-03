@@ -1,5 +1,6 @@
 // Declare app level module which depends on filters, and services
-angular.module('myApp', ['ngAnimate','ngRoute', 'myApp.controllers', 'LocalStorageModule'])
+angular.module('myApp', ['ngAnimate','ngRoute', 'myApp.controllers', 'LocalStorageModule',
+])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/home', {templateUrl: 'partials/home.html' , controller: "HomeCtrl"});
   $routeProvider.when('/login', {templateUrl: 'partials/login.html', controller: "LoginCtrl"});
@@ -12,17 +13,17 @@ angular.module('myApp', ['ngAnimate','ngRoute', 'myApp.controllers', 'LocalStora
   // default
   $routeProvider.otherwise({redirectTo: '/home'});
 }])
-.config(function (localStorageServiceProvider) {
+.config(['localStorageServiceProvider', function (localStorageServiceProvider) {
   localStorageServiceProvider
     .setPrefix('AP');
-})
-.run(function($rootScope) {
-  $rootScope.typeOf = function(value) {
-    return typeof value;
-  };
-})
+}])
+// .run(['$rootScope', function($rootScope) {
+//   $rootScope.typeOf = function(value) {
+//     return typeof value;
+//   };
+// }])
 
-.directive('stringToNumber', function() {
+.directive(['stringToNumber', function() {
   return {
     require: 'ngModel',
     link: function(scope, element, attrs, ngModel) {
@@ -34,4 +35,4 @@ angular.module('myApp', ['ngAnimate','ngRoute', 'myApp.controllers', 'LocalStora
       });
     }
   };
-});
+}]);

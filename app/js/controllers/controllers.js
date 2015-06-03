@@ -1,8 +1,8 @@
 'use strict';
 
 /* Controllers */
-angular.module('myApp.controllers', ['ngRoute'])
-.controller('HomeCtrl', function ($scope, $http) {
+angular.module('myApp.controllers', [])
+.controller('HomeCtrl', ['$scope', '$http', function ($scope, $http) {
   $scope.data = {};
   $scope.getData = function() {
     var urlString = window.location.origin + window.location.pathname + "backend/publicProjects.php";
@@ -33,7 +33,7 @@ angular.module('myApp.controllers', ['ngRoute'])
         obj.hasVoted = false;
         data[i] = obj;
       }
-    
+
 
       $scope.data = data;
 
@@ -88,7 +88,7 @@ angular.module('myApp.controllers', ['ngRoute'])
       $scope.getData();
     });
   }
-})
+}])
 .controller("LoginCtrl", function LoginCtrl($scope, $http, $location, localStorageService) {
 
   $scope.lastForm = {};
@@ -142,7 +142,7 @@ angular.module('myApp.controllers', ['ngRoute'])
     $scope.form = angular.copy($scope.lastForm);
   };
 })
-.controller("SignupCtrl", function ($scope, $http,$location, $route) {
+.controller('SignupCtrl',function($scope, $http,$location, $route) {
   $scope.lastForm = {};
   var urlString = window.location.origin + window.location.pathname + "backend/newUser.php";
 
@@ -178,7 +178,6 @@ angular.module('myApp.controllers', ['ngRoute'])
     $scope.form = angular.copy($scope.lastForm);
   };
 })
-
 // /***************************************** App (/secure) *********************************************** */
 .controller("CreateCtrl", function CreateCtrl($scope, $http, $location, localStorageService) {
   $scope.Logout = function() {
