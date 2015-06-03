@@ -1,5 +1,13 @@
-angular.module('myApp.controllers', ['ngRoute'])
-.controller('HomeCtrl', ['$scope', '$http', function($scope, $http) {
+'use strict';
+
+angular.module('myApp.home', ['ngRoute'])
+.config(['$routeProvider', function($routeProvider) {
+  $routeProvider.when('/home', {
+    templateUrl: 'partials/home.html',
+    controller: 'HomeCtrl'
+  });
+}])
+.controller('HomeCtrl', ['$scope', '$http', function ($scope, $http) {
   $scope.data = {};
   $scope.getData = function() {
     var urlString = window.location.origin + window.location.pathname + "backend/publicProjects.php";

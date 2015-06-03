@@ -1,4 +1,12 @@
-angular.module('myApp.controllers', ['ngRoute'])
+'use strict';
+
+angular.module('myApp.signup', ['ngRoute'])
+.config(['$routeProvider', function($routeProvider) {
+  $routeProvider.when('/signup', {
+    templateUrl: 'partials/signup.html',
+    controller: 'SignupCtrl'
+  });
+}])
 .controller('SignupCtrl',['$scope', '$http','$location', '$route', function($scope, $http,$location, $route) {
   $scope.lastForm = {};
   var urlString = window.location.origin + window.location.pathname + "backend/newUser.php";

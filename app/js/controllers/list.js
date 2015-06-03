@@ -1,4 +1,12 @@
-angular.module('myApp.controllers', ['ngRoute'])
+'use strict';
+
+angular.module('myApp.list', ['ngRoute'])
+.config(['$routeProvider', function($routeProvider) {
+  $routeProvider.when('/list', {
+    templateUrl: 'partials/secure/list.html',
+    controller: 'ListCtrl'
+  });
+}])
 .controller("ListCtrl",['$scope', '$http','$location', 'localStorageService', function($scope, $http, $location, localStorageService) {
 
   if (localStorageService.get("name") === null || localStorageService.get("id") === null) {
@@ -147,6 +155,7 @@ angular.module('myApp.controllers', ['ngRoute'])
     localStorageService.remove("name");
     localStorageService.remove("id");
     localStorageService.remove("email");
+    localStorageService.clearAll();
   };
   $scope.user.name = localStorageService.get("name");
 }]);

@@ -1,4 +1,12 @@
-angular.module('myApp.controllers', ['ngRoute'])
+'use strict';
+
+angular.module('myApp.login', ['ngRoute'])
+.config(['$routeProvider', function($routeProvider) {
+  $routeProvider.when('/login', {
+    templateUrl: 'partials/login.html',
+    controller: 'LoginCtrl'
+  });
+}])
 .controller('LoginCtrl', ['$scope', '$http', '$location', 'localStorageService', function($scope, $http, $location, localStorageService) {
 
   $scope.lastForm = {};

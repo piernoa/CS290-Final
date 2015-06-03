@@ -1,4 +1,12 @@
-angular.module('myApp.controllers', ['ngRoute'])
+'use strict';
+
+angular.module('myApp.create', ['ngRoute'])
+.config(['$routeProvider', function($routeProvider) {
+  $routeProvider.when('/create', {
+    templateUrl: 'partials/secure/create.html',
+    controller: 'CreateCtrl'
+  });
+}])
 .controller("CreateCtrl",['$scope', '$http', '$location', 'localStorageService', function($scope, $http, $location, localStorageService) {
   $scope.Logout = function() {
     localStorageService.remove("name");
