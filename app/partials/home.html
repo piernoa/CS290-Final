@@ -41,7 +41,7 @@
       <td class="center"><strong>Upvote</strong></td>
       <td class="center"><strong>Downvote</strong></td>
     </tr>
-  <tr ng-model="data" ng-animate="'animate'" ng-repeat="d in data | orderBy:'-votes'" >
+  <tr ng-model="data" ng-repeat="d in data | orderBy:'-votes'" >
     <td class="tProgress center">{{d.name}}</td>
     <td class="tProgress">
       <div class="progress">
