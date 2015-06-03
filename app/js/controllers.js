@@ -17,7 +17,7 @@ angular.module('myApp.controllers', ['ngRoute'])
     }).success(function(data, status, headers, config) {
       console.log("success");
       //console.log(data);
-      var dataObj = [];
+      $scope.data = {};
       //console.log(data);
       // php didnt want to give proper json back
       for (var i=0; i<data.length; i++) {
@@ -33,8 +33,10 @@ angular.module('myApp.controllers', ['ngRoute'])
         obj.hasVoted = false;
         data[i] = obj;
       }
+    
 
       $scope.data = data;
+
       //console.log(data);
 
     }).error(function(data, status, headers, config) {
