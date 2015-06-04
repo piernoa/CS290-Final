@@ -6,7 +6,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" href="#/home">Road Map</a>
+            <a class="brand" href="#/home">Node Map</a>
             <div class="nav-collapse collapse">
                 <ul class="nav">
                     <li><a href="#/create">Add Project</a></li>
@@ -32,7 +32,7 @@
       <td class="center"><strong>Public</strong></td>
 
     </tr>
-  <tr ng-model="data" ng-repeat="d in data">
+  <tr class="my-animation" ng-model="data" ng-repeat="d in data">
     <td class="tName center">{{d.name}}</td>
     <td class="tStart center">{{d.start | date: 'shortDate'}}</td>
     <td class="tLength center">{{d.length}} Weeks</td>
@@ -47,7 +47,7 @@
     <td class="tName pad15 center">{{d.votes}}</td>
     <td ng-show="{{d.public}}" ng-hide="!{{d.public}}" class="tLength pad15">True</td>
     <td ng-hide="{{d.public}}" ng-show="!{{d.public}}" class="tLength pad15">False</td>
-    <td class="tButton"><button ng-click="setModalData(d, $index)" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary" >Edit</button></td>
+    <td class="tButton"><button ng-click="setModalData(d, $index)" data-toggle="modal" data-target="#exampleModal" class="btn red" >Edit</button></td>
     <td class="tButton"><button ng-click="delete(d)" class="btn">Delete</button></td>
 
     <div ng-model="modalData" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -84,7 +84,8 @@
               </div>
               <div class="form-group">
                 <label for="notes" class="control-label" placeholder>About:</label>
-                <input ng-model="modalData.notes" type="text" class="form-control" id="notes" value="{{modalData.notes}}">
+                <textarea ng-model="modalData.notes" id="notes" rows="5" col="40" name="notes" type="text" class="span5 form-control" value="{{modalData.notes}}"/>
+                </textarea>
               </div>
 
             </form>

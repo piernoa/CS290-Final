@@ -50,7 +50,7 @@ angular.module('myApp.create', ['ngRoute'])
       },
       headers: {'Content-Type': 'application/x-www-form-urlencoded'}
     }).success(function(data, status, headers, config) {
-      //console.log("success");
+      console.log(data);
       $scope.resultData = data;
       $scope.resetForm();
       sweetAlert("Awesome!", "Project Created Successfully", "success");

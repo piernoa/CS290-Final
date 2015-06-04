@@ -20,7 +20,7 @@ if ($mysqli->query("CREATE TABLE Projects(
 if ($mysqli->query("CREATE TABLE Users(
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(255) NOT NULL UNIQUE,
-  email VARCHAR(255),
+  email VARCHAR(255) UNIQUE,
   password VARCHAR(255)
 )")) {
   echo "Users created successfully";

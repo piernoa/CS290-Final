@@ -36,8 +36,9 @@ body {
   text-align:center;
 }
 .noDecorate {
-  text-decoration:none;
+  text-decoration:none !important;
   color:inherit;
+  font-size: .8em;
 }
 
 .tName {
@@ -113,4 +114,80 @@ body {
 }
 
 
-/* http://codepen.io/cheeriottis/pen/inluv button*/
+.my-animation.ng-enter {
+  /* standard transition code */
+  transition: 1.5s linear all;
+  opacity:0;
+}
+.my-animation.ng-enter-stagger {
+  /* this will have a 100ms delay between each successive leave animation */
+  transition-delay: 0.5s;
+
+  /* in case the stagger doesn't work then the duration value
+   must be set to 0 to avoid an accidental CSS inheritance */
+  transition-duration: 0s;
+}
+.my-animation.ng-enter.ng-enter-active {
+  /* standard transition styles */
+  opacity:1;
+}
+
+.btn {
+  position: relative;
+  display: block;
+  width: 250px;
+  margin: 20px auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transform-style: flat;
+  transition: all 250ms ease-out;
+  background-image:none !important;
+}
+
+.btn::before, .btn::after {
+  content: "";
+  position: absolute;
+  z-index: -2;
+  transition: all 250ms ease-out;
+}
+.paper {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(128, 128, 128, 0.1) inset;
+  border-color: #dedede;
+}
+
+.paper-raise::before {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+.paper-raise::hover {
+    border: 1px solid #fff;
+  }
+
+.paper-raise::before {
+			box-shadow: 0 15px 10px -10px rgba(31, 31, 31, 0.5);
+    }
+.red {
+  background-color:#eb6a5a !important;
+  color: white !important;
+}
+
+.three-js-container {
+  margin-top:-23px;
+}
+
+.three-text {
+  margin-top: -615px;
+  position: relative;
+  margin-bottom: 415px;
+  color: white;
+}
+
+.margin-top-25 {
+  margin-top:25px;
+}
