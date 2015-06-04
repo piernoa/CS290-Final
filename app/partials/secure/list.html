@@ -32,7 +32,7 @@
       <td class="center"><strong>Public</strong></td>
 
     </tr>
-  <tr class="my-animation" ng-model="data" ng-repeat="d in data">
+  <tr class="my-list" ng-model="data" ng-repeat="d in data">
     <td class="tName center">{{d.name}}</td>
     <td class="tStart center">{{d.start | date: 'shortDate'}}</td>
     <td class="tLength center">{{d.length}} Weeks</td>
@@ -47,8 +47,8 @@
     <td class="tName pad15 center">{{d.votes}}</td>
     <td ng-show="{{d.public}}" ng-hide="!{{d.public}}" class="tLength pad15">True</td>
     <td ng-hide="{{d.public}}" ng-show="!{{d.public}}" class="tLength pad15">False</td>
-    <td class="tButton"><button ng-click="setModalData(d, $index)" data-toggle="modal" data-target="#exampleModal" class="btn red" >Edit</button></td>
-    <td class="tButton"><button ng-click="delete(d)" class="btn">Delete</button></td>
+    <td class="tButton"><button ng-click="setModalData(d, $index)" data-toggle="modal" data-target="#exampleModal" class="no-margin btn red" >Edit</button></td>
+    <td class="tButton"><button ng-click="delete(d)" class="no-margin btn">Delete</button></td>
 
     <div ng-model="modalData" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">

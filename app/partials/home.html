@@ -47,7 +47,7 @@
       <td class="center"><strong>Upvote</strong></td>
       <td class="center"><strong>Downvote</strong></td>
     </tr>
-  <tr class="my-animation" ng-model="data" ng-repeat="d in data | orderBy:'-votes'" >
+  <tr class="my-home" ng-model="data" ng-repeat="d in data | orderBy:'-votes'" >
     <td class="tProgress center">{{d.name}}</td>
     <td class="tProgress">
       <div class="progress">
@@ -58,8 +58,8 @@
     </td>
     <td class="tNotes pad15">{{d.notes}}</td>
     <td class="tNotes pad15 center">{{d.votes}}</td>
-    <td class="tNotes pad15"><button ng-click="upvote(d, $index)" class="btn paper paper-raise red">Upvote</button></td>
-    <td class="tNotes pad15"><button ng-click="downvote(d, $index)" class="btn paper paper-raise">Downvote</button></td>
+    <td class="tNotes pad15"><button ng-click="upvote(d, $index)" class="no-margin btn paper paper-raise red">Upvote</button></td>
+    <td class="tNotes pad15"><button ng-click="downvote(d, $index)" class="no-margin btn paper paper-raise">Downvote</button></td>
   </tr>
 </table>
 </div>

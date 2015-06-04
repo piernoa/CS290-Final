@@ -114,12 +114,13 @@ body {
 }
 
 
-.my-animation.ng-enter {
+/********* home page ng-repeat animation ************/
+.my-home.ng-enter {
   /* standard transition code */
   transition: 1.5s linear all;
   opacity:0;
 }
-.my-animation.ng-enter-stagger {
+.my-home.ng-enter-stagger {
   /* this will have a 100ms delay between each successive leave animation */
   transition-delay: 0.5s;
 
@@ -127,7 +128,26 @@ body {
    must be set to 0 to avoid an accidental CSS inheritance */
   transition-duration: 0s;
 }
-.my-animation.ng-enter.ng-enter-active {
+.my-home.ng-enter.ng-enter-active {
+  /* standard transition styles */
+  opacity:1;
+}
+
+/********* list page ng-repeat animation ************/
+.my-list.ng-enter {
+  /* standard transition code */
+  transition: 0.5s linear all;
+  opacity:0;
+}
+.my-list.ng-enter-stagger {
+  /* this will have a 100ms delay between each successive leave animation */
+  transition-delay: 0.5s;
+
+  /* in case the stagger doesn't work then the duration value
+   must be set to 0 to avoid an accidental CSS inheritance */
+  transition-duration: 0s;
+}
+.my-list.ng-enter.ng-enter-active {
   /* standard transition styles */
   opacity:1;
 }
@@ -190,4 +210,12 @@ body {
 
 .margin-top-25 {
   margin-top:25px;
+}
+
+.progress {
+  margin-bottom:0px !important;
+}
+
+.no-margin {
+  margin:0px !important;
 }
