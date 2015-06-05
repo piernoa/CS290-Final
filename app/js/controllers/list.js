@@ -17,6 +17,19 @@ angular.module('myApp.list', ['ngRoute'])
   $scope.modalData = {};
   $scope.user = {};
 
+  var date = new Date();
+  var month = date.getMonth();
+  month++;
+  if (month < 10) {
+    month = "0"+ month;
+  }
+  var day = date.getDate();
+  if (day < 10) {
+    day = "0"+ day;
+  }
+  $scope.minDateValidation = date.getFullYear() + "-" + month + "-" + day;
+
+
   $scope.getData = function() {
     var urlString = window.location.origin + window.location.pathname + "backend/allProjects.php";
     //console.log(urlString);
@@ -101,7 +114,7 @@ angular.module('myApp.list', ['ngRoute'])
 
   };
   $scope.updateProject = function(modalData) {
-  //  console.log("from updateProject: " + modalData.public);
+    //  console.log("from updateProject: " + modalData.public);
     if ($scope.modalData.public) {
       $scope.modalData.public = 1;
     } else {
@@ -109,38 +122,38 @@ angular.module('myApp.list', ['ngRoute'])
     }
 
 
-      if (Number(modalData.length) < 1) {
-        return sweetAlert("Uh Oh.", "Project lengths must be greater than 1!", "error");
-      }
+    if (Number(modalData.length) < 1) {
+      return sweetAlert("Uh Oh.", "Project lengths must be greater than 1!", "error");
+    }
 
-      var urlString = window.location.origin + window.location.pathname + "backend/updateProject.php";
+    var urlString = window.location.origin + window.location.pathname + "backend/updateProject.php";
 
-      $http({
-        method: 'POST',
-        url: urlString,
-        data: {
-          'name': modalData.name,
-          'start':modalData.start,
-          'notes': modalData.notes,
-          'progress': modalData.progress,
-          'length': modalData.length,
-          'id': modalData.id,
-          'public': modalData.public,
-          'owner': localStorageService.get("id")
-        },
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-      }).success(function(data, status, headers, config) {
-        //console.log("success");
-        //  console.log(data);
+    $http({
+      method: 'POST',
+      url: urlString,
+      data: {
+        'name': modalData.name,
+        'start':modalData.start,
+        'notes': modalData.notes,
+        'progress': modalData.progress,
+        'length': modalData.length,
+        'id': modalData.id,
+        'public': modalData.public,
+        'owner': localStorageService.get("id")
+      },
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    }).success(function(data, status, headers, config) {
+      //console.log("success");
+      //  console.log(data);
 
-        $scope.getData();
-        sweetAlert("Success", "Project Updated.", "success");
-      }).error(function(data, status, headers, config) {
-        $scope.getData();
-      });
-      $scope.modalData = {};
-      return;
-    };
+      $scope.getData();
+      sweetAlert("Success", "Project Updated.", "success");
+    }).error(function(data, status, headers, config) {
+      $scope.getData();
+    });
+    $scope.modalData = {};
+    return;
+  };
   $scope.Logout = function() {
     localStorageService.remove("name");
     localStorageService.remove("id");

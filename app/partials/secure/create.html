@@ -27,14 +27,14 @@
       <span ng-show="contactForm.name.$error.required" class="help-inline">Required</span>
 
       <label>Start By</label>
-      <input ng-model="form.start" name="start" type="date" class="span6" placeholder="dd/mm/yyyy" required />
+      <input ng-model="form.start" name="start" type="date" min="{{minDateValidation}}" class="span6" placeholder="dd/mm/yyyy" required />
       <span ng-show="contactForm.start.$error.required" class="help-inline">Required</span>
-      <span ng-show="contactForm.start.$error.email" class="help-inline">Error</span>
+      <span ng-show="contactForm.start.$error.min" class="help-inline">Date must be today or after </span>
 
       <label>Project Length</label>
       <input ng-model="form.projLength" min="1" name="projLength" type="number" class="span6" placeholder="in Weeks" required />
       <span ng-show="contactForm.projLength.$error.required" class="help-inline">Required</span>
-      <span ng-show="contactForm.projLength.$error.password" class="help-inline">Error</span>
+      <span ng-show="contactForm.projLength.$error.min" class="help-inline">Must be 1 or greater</span>
       <p>This makes your project title and the about section public so people can vote on your idea!</p>
       <div class="checkbox">
         <label>
@@ -43,8 +43,7 @@
       </div>
 
       <label>About</label>
-      <textarea rows="5" col="50" ng-model="form.notes" name="notes" type="text" class="span6" placeholder="What's your project about?"  />
-      </textarea>
+      <textarea rows="5" col="50" maxlength="144" ng-model="form.notes" name="notes" type="text" class="span6" placeholder="What's your project about?"  /></textarea>
 
       <div class="form-actions">
           <button ng-click="sendForm()" ng-disabled="contactForm.$invalid" class="btn btn-primary" >Create Project &raquo;</button>
