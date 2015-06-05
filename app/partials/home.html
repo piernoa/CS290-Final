@@ -2,36 +2,36 @@
   <tjs-model-viewer id="threejs" assimp-url="assimpModelUrl" class=""></tjs-model-viewer>
 </div>
 <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container">
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-            <a class="brand" href="#/home">Node Map</a>
-            <div class="nav-collapse collapse">
-                <ul class="nav">
-                    <li class="active"><a href="#/home">Home</a></li>
-                    <li><a href="#/login">Signup / Login</a></li>
-                </ul>
-            </div><!--/.nav-collapse -->
-        </div>
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="#/home">Node Map</a>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li class="active"><a href="#/home">Home</a></li>
+          <li><a href="#/login">Signup / Login</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
     </div>
+  </div>
 </div>
 <!-- Main hero unit for a primary marketing message or call to action -->
 
 <div class="three-text">
-    <h1 class="center"> Node Map </h1>
-    <h2 class="center">A simple way to track your programming projects.</h2>
-    <p class="center">
-      Use Node Map to keep track of all the projects you want to start and when you want to start them by.
-    </p>
-    <p class="center">
-      Make your project public and have people upvote or downvote the idea.
-    </p>
+  <h1 class="center"> Node Map </h1>
+  <h2 class="center">A simple way to track your programming projects.</h2>
+  <p class="center">
+    Use Node Map to keep track of all the projects you want to start and when you want to start them by.
+  </p>
+  <p class="center">
+    Make your project public and have people upvote or downvote the idea.
+  </p>
 
-    <p class="center"><a href="#/signup" class="btn red btn-large">Sign Up</a></p>
+  <p class="center"><a href="#/signup" class="btn red btn-large">Sign Up</a></p>
 </div>
 
 
@@ -47,31 +47,19 @@
       <td class="center"><strong>Upvote</strong></td>
       <td class="center"><strong>Downvote</strong></td>
     </tr>
-  <tr class="my-home" ng-model="data" ng-repeat="d in data | orderBy:'-votes'" >
-    <td class="tProgress center">{{d.name}}</td>
-    <td class="tProgress">
-      <div class="progress">
-        <div class="bar bar-success" role="progressbar" aria-valuenow="{{d.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{d.progress}}%;">
-          {{d.progress}}%
+    <tr class="my-home" ng-model="data" ng-repeat="d in data | orderBy:'-votes'" >
+      <td class="tProgress center">{{d.name}}</td>
+      <td class="tProgress">
+        <div class="progress">
+          <div class="bar bar-success" role="progressbar" aria-valuenow="{{d.progress}}" aria-valuemin="0" aria-valuemax="100" style="width: {{d.progress}}%;">
+            {{d.progress}}%
+          </div>
         </div>
-      </div>
-    </td>
-    <td class="tNotes pad15">{{d.notes}}</td>
-    <td class="tNotes pad15 center">{{d.votes}}</td>
-    <td class="tNotes pad15"><button ng-click="upvote(d, $index)" class="no-margin btn paper paper-raise red">Upvote</button></td>
-    <td class="tNotes pad15"><button ng-click="downvote(d, $index)" class="no-margin btn paper paper-raise">Downvote</button></td>
-  </tr>
-</table>
-</div>
-<div class="row margin-top-25">
-  <h1 class="center"> Libraries &amp; trickery used in this project</h1>
-  <ul>
-    <li>ngAnimate over an ng-repeat.</li>
-    <li>Three js as a background image on home page.</li>
-    <li>Angular &amp; PHP integration.</li>
-    <li>Sweet Alert to replace javascripts native alert box.</li>
-    <li>jQuery for some light DOM manipulation when it couldn't be helped.</li>
-    <li>Bootstrap</li>
-    <li>Modal inside ng-repeat</li>
-  </ul>
+      </td>
+      <td class="tNotes pad15">{{d.notes}}</td>
+      <td class="tNotes pad15 center">{{d.votes}}</td>
+      <td class="tNotes pad15"><button ng-click="upvote(d, $index)" class="no-margin btn paper paper-raise red">Upvote</button></td>
+      <td class="tNotes pad15"><button ng-click="downvote(d, $index)" class="no-margin btn paper paper-raise">Downvote</button></td>
+    </tr>
+  </table>
 </div>

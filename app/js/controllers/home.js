@@ -18,7 +18,7 @@ angular.module('myApp.home', ['ngRoute', 'ngAnimate'])
   };
   setTimeout(function(){
     $scope.getData();
-  },1500);
+  },500);
   $scope.upvote  = function(d, idx) {
     // console.log($scope.data[idx].hasVoted)
     if ($scope.data[idx].hasVoted === true) {

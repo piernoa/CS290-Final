@@ -69,6 +69,7 @@ body {
 .pad15 {
   padding-left:15px;
   padding-right:15px;
+  padding-top:15px;
 }
 
 .hero-unit {
@@ -218,4 +219,8 @@ body {
 
 .no-margin {
   margin:0px !important;
+}
+
+.well {
+  margin-right: 19px;
 }
